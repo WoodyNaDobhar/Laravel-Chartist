@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Chartist\Facades;
+namespace WoodyNaDobhar\Chartist\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -20,7 +20,7 @@ class Chartist extends Facade
     /**
      * @return string
      */
-    protected static function getFacadeAccessor(): string
+    protected static function getFacadeAccessor()
     {
         return 'chartist';
     }
