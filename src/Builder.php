@@ -11,9 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Chartist;
-
-use Illuminate\View\View;
+namespace WoodyNaDobhar\Chartist;
 
 class Builder
 {
@@ -26,24 +24,25 @@ class Builder
      * @var array
      */
     private $defaults = [
-        'aspectRatio'       => null,
-        'dimension'         => ['width' => 'auto', 'height' => 'auto'],
-        'element'           => null,
-        'labels'            => [],
-        'options'           => [],
-        'prefix'            => 'ct-',
+        'aspectRatio' => null,
+        'dimension' => ['width' => 'auto', 'height' => 'auto'],
+        'element' => null,
+        'labels' => [],
+        'options' => [],
+        'prefix' => 'ct-',
         'responsiveOptions' => [],
-        'series'            => [],
-        'type'              => 'Line',
+        'series' => [],
+        'type' => 'Line',
+        'plugins' => [],
     ];
 
     /**
      * @var array
      */
     private $types = [
-        'Bar'  => 'extended',
+        'Bar' => 'extended',
         'Line' => 'extended',
-        'Pie'  => 'minimal',
+        'Pie' => 'minimal',
     ];
 
     /**
@@ -51,7 +50,7 @@ class Builder
      *
      * @return $this
      */
-    public function name($name): self
+    public function name($name)
     {
         $this->name = $name;
         $this->charts[$name] = $this->defaults;
@@ -64,7 +63,7 @@ class Builder
      *
      * @return Builder
      */
-    public function element($element): self
+    public function element($element)
     {
         return $this->set('element', $element);
     }
@@ -74,7 +73,7 @@ class Builder
      *
      * @return Builder
      */
-    public function labels(array $labels): self
+    public function labels(array $labels)
     {
         return $this->set('labels', $labels);
     }
@@ -84,7 +83,7 @@ class Builder
      *
      * @return Builder
      */
-    public function series(array $series): self
+    public function series(array $series)
     {
         return $this->set('series', $series);
     }
@@ -94,7 +93,7 @@ class Builder
      *
      * @return Builder
      */
-    public function aspectRatio($aspectRatio): self
+    public function aspectRatio($aspectRatio)
     {
         return $this->set('aspectRatio', $aspectRatio);
     }
@@ -104,7 +103,7 @@ class Builder
      *
      * @return Builder
      */
-    public function prefix($prefix): self
+    public function prefix($prefix)
     {
         return $this->set('prefix', $prefix);
     }
@@ -114,9 +113,9 @@ class Builder
      *
      * @return Builder
      */
-    public function type($type): self
+    public function type($type)
     {
-        if (! array_key_exists($type, $this->types)) {
+        if (!array_key_exists($type, $this->types)) {
             throw new \InvalidArgumentException('Invalid Chart type.');
         }
 
@@ -129,7 +128,7 @@ class Builder
      *
      * @return Builder
      */
-    public function dimension($width, $height = 0): self
+    public function dimension($width, $height = 0)
     {
         if (empty($height)) {
             $height = $width;
@@ -143,7 +142,7 @@ class Builder
      *
      * @return $this
      */
-    public function options(array $options): self
+    public function options(array $options)
     {
         foreach ($options as $key => $value) {
             $this->set('options.'.$key, $value);
@@ -157,10 +156,24 @@ class Builder
      *
      * @return $this
      */
-    public function responsiveOptions(array $options): self
+    public function responsiveOptions(array $options)
     {
         foreach ($options as $key => $value) {
             $this->set('responsiveOptions.'.$key, $value);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param array $plugins
+     *
+     * @return $this
+     */
+    public function plugins(array $plugins)
+    {
+        foreach ($plugins as $key => $value) {
+            $this->set('plugins.'.$key, $value);
         }
 
         return $this;
@@ -171,7 +184,7 @@ class Builder
      *
      * @return mixed
      */
-    public function renderCanvas($name): View
+    public function renderCanvas($name)
     {
         $chart = $this->charts[$name];
 
@@ -187,7 +200,7 @@ class Builder
      *
      * @return mixed
      */
-    public function renderScripts($name): View
+    public function renderScripts($name)
     {
         $chart = $this->charts[$name];
 
@@ -199,7 +212,8 @@ class Builder
                 ->with('options', $chart['options'])
                 ->with('responsiveOptions', $chart['responsiveOptions'])
                 ->with('prefix', $chart['prefix'])
-                ->with('type', $chart['type']);
+                ->with('type', $chart['type'])
+                ->with('plugins', $chart['plugins']);
     }
 
     /**
@@ -207,7 +221,7 @@ class Builder
      *
      * @return mixed
      */
-    private function get($key)
+    public function get($key)
     {
         return array_get($this->charts[$this->name], $key);
     }
@@ -218,7 +232,7 @@ class Builder
      *
      * @return $this
      */
-    private function set($key, $value): self
+    private function set($key, $value)
     {
         array_set($this->charts[$this->name], $key, $value);
 
