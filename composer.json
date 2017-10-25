@@ -1,12 +1,16 @@
 {
     "name": "woodynadobhar/laravel-chartist",
-    "description": "Chartist Integration with a Fluent Builder for Laravel 5",
+    "description": "Chartist Integration with a Fluent Builder for Laravel 5 with Plugin Support",
     "keywords": ["laravel", "framework", "Laravel-Chartist", "Laravel Chartist", "woodynadobhar"],
     "license": "MIT",
     "authors": [{
         "name": "Brian Faust",
         "email": "hello@brianfaust.me",
         "homepage": "https://brianfaust.me",
+        "role": "Developer"
+    },{
+        "name": "Woody NaDobhar",
+        "email": "woodynadobhar@hotmail.com",
         "role": "Developer"
     }],
     "require": {
