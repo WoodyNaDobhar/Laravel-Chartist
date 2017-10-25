@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "BrianFaust\\Chartist\\": "src/"
+            "WoodyNaDobhar\\Chartist\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BrianFaust\\Tests\\Chartist\\": "tests"
+            "WoodyNaDobhar\\Tests\\Chartist\\": "tests"
         }
     },
     "config": {
