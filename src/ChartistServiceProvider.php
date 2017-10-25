@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace WoodyNaDobhar\Chartist;
 
-class ServiceProvider extends \BrianFaust\ServiceProvider\ServiceProvider
+class ChartistServiceProvider extends \BrianFaust\ServiceProvider\ServiceProvider
 {
     /**
      * Bootstrap the application services.
