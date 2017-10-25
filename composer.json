@@ -5,8 +5,8 @@
     "license": "MIT",
     "authors": [{
         "name": "Brian Faust",
-        "email": "hello@brianfaust.de",
-        "homepage": "https://brianfaust.de",
+        "email": "hello@brianfaust.me",
+        "homepage": "https://brianfaust.me",
         "role": "Developer"
     }],
     "require": {
@@ -29,7 +29,8 @@
         }
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
