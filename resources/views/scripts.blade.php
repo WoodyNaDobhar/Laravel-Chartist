@@ -5,6 +5,18 @@ $(function() {
         labels: {!! json_encode($labels) !!},
         @endif
         series: {!! json_encode($series) !!}
-    }, {!! json_encode($options) !!}, {!! json_encode($responsiveOptions) !!});
+    }, 
+    @if(!empty($plugins))
+        {!! substr(json_encode($options), 0, -1) !!} ,
+			"plugins": [
+				@foreach($plugins as $plugin)
+				{{ $plugin }},
+				@endforeach
+			]
+		}
+	@else
+		json_encode($options)
+	@endif
+    , {!! json_encode($responsiveOptions) !!});
 });
 </script>
