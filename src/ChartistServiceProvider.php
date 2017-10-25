@@ -11,22 +11,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Chartist;
+namespace WoodyNaDobhar\Chartist;
 
-use Illuminate\Support\ServiceProvider;
-
-class ChartistServiceProvider extends ServiceProvider
+class ServiceProvider extends \BrianFaust\ServiceProvider\ServiceProvider
 {
     /**
      * Bootstrap the application services.
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/laravel-chartist'),
-        ], 'views');
-
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-chartist');
+        $this->publishViews();
+        $this->loadViews();
     }
 
     /**
@@ -34,8 +29,30 @@ class ChartistServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        parent::register();
+
         $this->app->singleton('chartist', function ($app) {
             return new Builder();
         });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return array_merge(parent::provides(), ['chartist']);
+    }
+
+    /**
+     * Get the default package name.
+     *
+     * @return string
+     */
+    public function getPackageName()
+    {
+        return 'chartist';
     }
 }
