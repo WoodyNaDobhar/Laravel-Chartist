@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Tests\Chartist;
+namespace WoodyNaDobhar\Tests\Chartist;
 
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 

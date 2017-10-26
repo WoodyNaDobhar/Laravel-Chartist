@@ -11,12 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Tests\Chartist\Facades;
+namespace WoodyNaDobhar\Tests\Chartist\Facades;
 
-use BrianFaust\Chartist\Builder;
-use BrianFaust\Chartist\Facades\Chartist;
+use WoodyNaDobhar\Chartist\Builder;
+use WoodyNaDobhar\Chartist\Facades\Chartist;
 use GrahamCampbell\TestBenchCore\FacadeTrait;
-use BrianFaust\Tests\Chartist\AbstractTestCase;
+use WoodyNaDobhar\Tests\Chartist\AbstractTestCase;
 
 class ChartistTest extends AbstractTestCase
 {
